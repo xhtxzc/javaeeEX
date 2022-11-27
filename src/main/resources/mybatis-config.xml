@@ -21,6 +21,6 @@
         </environment>
     </environments>
     <mappers>
-        <mapper resource="cn/edu/zjut/mapper/EmailVerifyMapper.xml"/>
+        <mapper resource="cn/edu/zjut/mappers/EmailVerifyMapper.xml"/>
     </mappers>
 </configuration>
