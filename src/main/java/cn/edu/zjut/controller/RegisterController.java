@@ -7,7 +7,6 @@ import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -24,7 +23,7 @@ public class RegisterController {
         this.emailVerifyService = service;
     }
     @RequestMapping("/verify/{email}/{code}")
-    public String sentEmail(@PathVariable String email,@PathVariable String code, Model model){
+    public String verifyEmail(@PathVariable String email, @PathVariable String code, Model model){
         EmailVerify verify = new EmailVerify();
         verify.setEmail(email);
         verify.setVerificationCode(code);
@@ -37,8 +36,17 @@ public class RegisterController {
         }
         return "log";
     }
-    @RequestMapping("/d")
-    public void s(){
-        System.out.println("d");
+    @RequestMapping("/sent/{email}")
+    public String sentEmail(@PathVariable String email, Model model){
+        EmailVerify verify = new EmailVerify();
+        verify.setEmail(email);
+        verify.setTime(System.currentTimeMillis());
+        verify.setVerificationCode(String.valueOf(verify.getTime()%1000000));
+        if (emailVerifyService.sentEmail(verify)){
+            return "register/verifyEmail";
+        }
+        else{
+            return "register/error";
+        }
     }
 }

@@ -4,4 +4,5 @@ import org.apache.ibatis.annotations.Mapper;
 
 public interface EmailVerifyDao {
     boolean selectVerificationByEmail(EmailVerify verify);
+    boolean insertVerificationByEmail(EmailVerify verify);
 }

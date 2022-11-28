@@ -15,7 +15,7 @@
     息转换的Bean -->
     <mvc:annotation-driven/>
     <context:component-scan base-package="cn.edu.zjut.controller"/>
-    <context:component-scan base-package="cn.edu.zjut"/>
+    <context:component-scan base-package="cn.edu.zjut.service"/>
 
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver" id="internalResourceViewResolver">
         <!-- 前缀-->
