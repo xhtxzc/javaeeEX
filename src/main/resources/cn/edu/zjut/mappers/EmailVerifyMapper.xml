@@ -6,12 +6,12 @@
         <parameter property="verificationCode"/>
         <parameter  property="verificationState"/>
     </parameterMap>
-
-    <select id="selectVerificationByEmail" resultType="java.lang.Boolean" parameterType="cn.edu.zjut.po.EmailVerify">
-        select verificationState from email_verify where email = #{email} and verificationCode = #{verificationCode}
+    <select id="selectVerificationByEmail" resultType="cn.edu.zjut.pojo.EmailVerifyAndTimeOut" parameterType="cn.edu.zjut.po.EmailVerify">
+        select time,verificationState from email_verify where email = #{email} and verificationCode = #{verificationCode}
     </select>
     <!-- 一对一根据id 查询个人信息：第一种方法（嵌套查询） -->
     <insert id="insertVerificationByEmail" parameterType="cn.edu.zjut.po.EmailVerify">
         insert into email_verify (email, verificationCode,time) VALUES (#{email},#{verificationCode},#{time})
     </insert>
+
 </mapper>
