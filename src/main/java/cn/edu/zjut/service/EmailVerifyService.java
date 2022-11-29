@@ -36,9 +36,8 @@ public class EmailVerifyService implements IEmailVerifyService{
     }
 
     @Override
-    public boolean verifyEmail(EmailVerify verify) {
+    public String verifyEmail(EmailVerify verify) {
         try {
-            System.out.println("verifyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy");
             SqlSession session;
             InputStream config = Resources.getResourceAsStream("mybatis-config.xml");
             SqlSessionFactory ssf = new SqlSessionFactoryBuilder().build(config);
@@ -48,12 +47,16 @@ public class EmailVerifyService implements IEmailVerifyService{
             session.commit();
             session.close();
             if (!ver.isVerificationState() && System.currentTimeMillis() - ver.getTime() < 300000) {
-                return true;
+                return "true";
+            } else if (System.currentTimeMillis() - ver.getTime() > 300000) {
+                return "timeOut";
+            } else if (ver.isVerificationState()) {
+                return "again";
             }
-            return false;
+            return "false";
         }catch (Exception e){
             e.printStackTrace();
         }
-        return false;
+        return "false";
     }
 }

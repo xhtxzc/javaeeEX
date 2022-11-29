@@ -31,10 +31,15 @@ public class RegisterController {
             EmailVerify verify = new EmailVerify();
             verify.setEmail(registerVerify.getEmail());
             verify.setVerificationCode(registerVerify.getCode());
-            if (emailVerifyService.verifyEmail(verify)){
+            String state = emailVerifyService.verifyEmail(verify);
+            if (state.equals("true")){
                 model.addAttribute("registerUser",new RegisterUser());
                 return "register/register";
             }
+            else if (state.equals("timeOut")){
+                return "r";
+            }
+
         }
         return "error";
     }
