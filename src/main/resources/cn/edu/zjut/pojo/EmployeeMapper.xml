@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.edu.zjut.dao.EmployeeDao">
+    <select id="SelectAllEmployee" resultMap="employeeResult">
+        Select * from employee
+    </select>
+
+    <select id="SelectEmployeeById" resultMap="employeeResult">
+        Select * from employee where id = #{id}
+    </select>
+
+    <resultMap id="employeeResult" type="cn.edu.zjut.pojo.Employee">
+        <id property="id" column="id"/>
+        <result property="name" column="name"/>
+        <result property="email" column="email"/>
+        <result property="position" column="position"/>
+        <result property="storeId" column="storeId"/>
+        <result property="password" column="password"/>
+        <!--一对多级联查询,ofType表示集合中的元素类型,将id传递给selectPreferenceById-->
+        <collection property="preferenceList" ofType="cn.edu.zjut.pojo.Preference" column="id"
+                    select="cn.edu.zjut.dao.PreferenceDao.selectPreferenceById"/>
+    </resultMap>
+</mapper>

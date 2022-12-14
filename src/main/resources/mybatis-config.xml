@@ -22,5 +22,7 @@
     </environments>
     <mappers>
         <mapper resource="cn/edu/zjut/mappers/EmailVerifyMapper.xml"/>
+        <mapper resource="cn/edu/zjut/pojo/EmployeeMapper.xml"/>
+        <mapper resource="cn/edu/zjut/pojo/PreferenceMapper.xml"/>
     </mappers>
 </configuration>
