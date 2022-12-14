@@ -48,7 +48,7 @@ public class WorkTable {
 
     //获取 周index1 的第index2个班次的员工组组
     public ArrayList<ArrayList<Staff>> getStaffList(int index1 , int index2){
-        int index = index1*6 + index2 - 1;//转换为Vector中的下标,6为一天的班次总数
+        int index = index1*6 + index2 ;//转换为Vector中的下标,6为一天的班次总数
         return table.get(index);
     }
 

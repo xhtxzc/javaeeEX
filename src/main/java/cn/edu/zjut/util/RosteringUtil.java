@@ -40,6 +40,9 @@ public class RosteringUtil {
         System.out.println(score);
         return null;
     }
+    private static int calculateScore(){
+        return 0;
+    }
     private static boolean Add(List<Staff> list){
         List<Staff> staffs = new ArrayList<>();
         for (Staff staff0 : list){

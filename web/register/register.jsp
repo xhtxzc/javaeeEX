@@ -11,6 +11,8 @@
     <title>Title</title>
 </head>
 <body>
-
+<form action="${pageContext.request.contextPath}/test/test">
+    <input type="submit">
+</form>
 </body>
 </html>
