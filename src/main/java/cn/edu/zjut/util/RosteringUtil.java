@@ -33,7 +33,7 @@ public class RosteringUtil {
                     break;
                 }
                 pos++;
-                iterators[pos] = workTable.getStaffList(pos/7,pos%7).listIterator();
+                iterators[pos] = workTable.getStaffList(pos/7,pos%7+1).listIterator();
             }
 
         }
@@ -90,7 +90,7 @@ public class RosteringUtil {
         for (int i =0 ;i<42;i++){
             vector.add(new LinkedBlockingQueue<>());
             each[i] = 0;
-            iterators[i] = workTable.getStaffList(i/7,i%7).listIterator();
+            iterators[i] = workTable.getStaffList(i/7,i%7+1).listIterator();
         }
         table = new ArrayList<>();
         staffTable = new StaffTable();
