@@ -13,10 +13,10 @@ public class RosteringUtil {
     static Vector<Queue<List<Staff>>> vector = new Vector<>();
     static short[] each = new short[42];
     static Iterator<ArrayList<Staff>>[] iterators = new Iterator[42];
-    static List<List<Staff>> table;
     static StaffTable staffTable;
     static short pos = 0;
     public static FinalTable start(WorkTable workTable ){
+        FinalTable table = new FinalTable();
         build(workTable);
         short score = 0;
         ArrayList<Staff>[] s = new ArrayList[42];
@@ -30,6 +30,13 @@ public class RosteringUtil {
             if (Add(list)) {
                 if (pos==41){
                     score = 32;
+                    if (score<calculateScore()){
+                        List<List<Staff>> lists = new ArrayList<>();
+                        for (int i =0 ;i<42;i++){
+                            lists.add(s[i]);
+                        }
+                        table.setTable(lists);
+                    }
                     break;
                 }
                 pos++;
@@ -38,7 +45,7 @@ public class RosteringUtil {
 
         }
         System.out.println(score);
-        return null;
+        return table;
     }
     private static int calculateScore(){
         return 0;
@@ -92,7 +99,6 @@ public class RosteringUtil {
             each[i] = 0;
             iterators[i] = workTable.getStaffList(i/7,i%7+1).listIterator();
         }
-        table = new ArrayList<>();
         staffTable = new StaffTable();
     }
 }
