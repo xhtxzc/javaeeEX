@@ -8,4 +8,5 @@ import java.util.List;
 public interface EmployeeDao {
     public List<Employee> SelectAllEmployee();
     public Employee SelectEmployeeById(String id);
+    public Integer DeleteEmployeeById(String id);
 }

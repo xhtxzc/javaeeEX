@@ -9,6 +9,10 @@
         Select * from employee where id = #{id}
     </select>
 
+    <delete id="DeleteEmployeeById" parameterType="Integer">
+        delete from employee where id = #{id}
+    </delete>
+
     <resultMap id="employeeResult" type="cn.edu.zjut.pojo.Employee">
         <id property="id" column="id"/>
         <result property="name" column="name"/>
