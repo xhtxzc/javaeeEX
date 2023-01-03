@@ -1,8 +1,6 @@
 package cn.edu.zjut.controller;
 
-import cn.edu.zjut.bean.JSONPreference;
-import cn.edu.zjut.bean.LoginAccount;
-import cn.edu.zjut.bean.Preferences;
+import cn.edu.zjut.bean.*;
 import cn.edu.zjut.pojo.Employee;
 import cn.edu.zjut.service.EmployeeService;
 import cn.edu.zjut.service.IEmployeeService;
@@ -59,11 +57,19 @@ public class ForwardController {
     @RequestMapping("/app/{id}")
     public String two(@PathVariable String id, Model model){
         model.addAttribute("personalData",employeeService.GetPersonaldata(id));
+        model.addAttribute("submits",employeeService.getLefts(id));
+        model.addAttribute("ros",employeeService.getMyRos(id));
         return "staff/approve";
     }
     @RequestMapping("/ros/{id}")
     public String three(@PathVariable String id, Model model){
         model.addAttribute("personalData",employeeService.GetPersonaldata(id));
+        SeeRos ros = new SeeRos();
+        for (int i = 0; i < 42; i++) {
+            SeeRosGroup group = employeeService.getOneTimeWorkers(i+1);
+            ros.getNames().add(group.getName());
+        }
+        model.addAttribute("ross",ros);
         return "staff/ros";
     }
     @RequestMapping("/acp/{id}")

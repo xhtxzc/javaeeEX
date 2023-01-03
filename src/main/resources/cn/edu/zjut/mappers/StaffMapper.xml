@@ -4,6 +4,15 @@
     <update id="AlterPreferenceDay" parameterType="cn.edu.zjut.po.AlterDayInDB">
         UPDATE j2ee.preference t
         SET t.value = #{value}
-        WHERE t.employeeId LIKE #{employeeId} and type like #{type}
+        WHERE t.employeeId LIKE #{employeeId} and type like #{type};
     </update>
+    <select id="getGroup" parameterType="cn.edu.zjut.po.GetGroupInDB" resultType="cn.edu.zjut.po.GetGroupInDB">
+        select employeeId from ros202201 where time= 1
+    </select>
+    <select id="getLefts" parameterType="java.lang.String" resultType="cn.edu.zjut.po.EmployeeLeave">
+        select * from employee_leave where id = #{id};
+    </select>
+    <select id="getMyRos" parameterType="java.lang.String" resultType="cn.edu.zjut.bean.MyRos">
+        select time from ros202201 where employeeId = #{id};
+    </select>
 </mapper>

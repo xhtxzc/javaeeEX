@@ -58,6 +58,10 @@ public class StaffController {
         return "staff/info";
 
     }
+    @RequestMapping("/askLeave/{id}/{time}")
+    public String sb(@PathVariable String id,@PathVariable String time, Model model){
+        return "";
+    }
     @RequestMapping("/alterTime/{id}")
     public String two(@ModelAttribute AlterTime time ,@PathVariable String id, Model model){
         JSONPreference json = new JSONPreference();
@@ -84,6 +88,7 @@ public class StaffController {
         dayInDB.setValue(JSON.toJSONString(json));
         dayInDB.setEmployeeId(id);
         employeeService.AlterDay(dayInDB);
+
         return "staff/info";
 
     }

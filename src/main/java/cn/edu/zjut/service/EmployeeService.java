@@ -1,10 +1,14 @@
 package cn.edu.zjut.service;
 
+import cn.edu.zjut.bean.MyRos;
 import cn.edu.zjut.bean.Preferences;
+import cn.edu.zjut.bean.SeeRosGroup;
 import cn.edu.zjut.dao.EmployeeDao;
 import cn.edu.zjut.dao.PreferenceDao;
 import cn.edu.zjut.dao.StraffDao;
 import cn.edu.zjut.po.AlterDayInDB;
+import cn.edu.zjut.po.EmployeeLeave;
+import cn.edu.zjut.po.GetGroupInDB;
 import cn.edu.zjut.pojo.Employee;
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
@@ -18,6 +22,68 @@ import java.util.List;
 
 @Service("employeeService")
 public class EmployeeService implements IEmployeeService{
+    @Override
+    public ArrayList<MyRos> getMyRos(String id) {
+        try{
+            SqlSession session;
+            InputStream config= Resources.getResourceAsStream("mybatis-config.xml");
+            SqlSessionFactory ssf= new SqlSessionFactoryBuilder().build(config);
+            session = ssf.openSession();
+            StraffDao dao = session.getMapper(StraffDao.class);
+            ArrayList<MyRos> list = dao.getMyRos(id);
+            session.commit();
+            session.close();
+            return list;
+
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    @Override
+    public ArrayList<EmployeeLeave> getLefts(String id) {
+        try{
+            SqlSession session;
+            InputStream config= Resources.getResourceAsStream("mybatis-config.xml");
+            SqlSessionFactory ssf= new SqlSessionFactoryBuilder().build(config);
+            session = ssf.openSession();
+            StraffDao dao = session.getMapper(StraffDao.class);
+            ArrayList<EmployeeLeave> list = dao.getLefts(id);
+            session.commit();
+            session.close();
+            return list;
+
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    @Override
+    public SeeRosGroup getOneTimeWorkers(int time) {
+        try{
+            SqlSession session;
+            InputStream config= Resources.getResourceAsStream("mybatis-config.xml");
+            SqlSessionFactory ssf= new SqlSessionFactoryBuilder().build(config);
+            session = ssf.openSession();
+            SeeRosGroup seeRosGroup = new SeeRosGroup();
+            StraffDao dao = session.getMapper(StraffDao.class);
+            GetGroupInDB group = new GetGroupInDB();
+            group.setTime(time);
+            group.setDatabaseName("ros202201");
+            group.setDatabaseName1("time");
+            seeRosGroup.setName(dao.getGroup(group));
+            session.commit();
+            session.close();
+            return seeRosGroup;
+
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return null;
+    }
+
     @Override
     public boolean AlterDay(AlterDayInDB dayInDB) {
         try{
