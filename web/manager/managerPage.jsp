@@ -12,7 +12,7 @@
 </head>
 <body>
 你好！${personalData.name}<br>
-<a href="${pageContext.request.contextPath}/fow/acp/${personalData.id}">提交申请</a><br>
+<a href="${pageContext.request.contextPath}/fow/acp/${personalData.id}">查看申请</a><br>
 <a href="${pageContext.request.contextPath}/fow/see/${personalData.id}">查看排班</a><br>
 </body>
 </html>

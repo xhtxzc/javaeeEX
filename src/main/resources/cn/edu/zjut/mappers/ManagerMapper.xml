@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.edu.zjut.dao.ManagerDao">
+    <select id="getNotAccept" parameterType="java.lang.String" resultType="cn.edu.zjut.pojo.NotAccept">
+        select employee.name as name,employee_leave.id as id,information,time,type,number from employee_leave,employee where pass = 0 and  employee_leave.id=employee.id and storeId=(select storeId from employee where employee.id = #{id});
+    </select>
+    <update id="accept" parameterType="cn.edu.zjut.bean.AccAndRef">
+        UPDATE j2ee.employee_leave t
+        SET t.pass = 1 ,t.approval_name = (select name from employee where employee.id = #{id})
+        WHERE t.number = #{number};
+    </update>
+    <delete id="delete" parameterType="cn.edu.zjut.bean.AccAndRef">
+        DELETE FROM j2ee.ros202201
+        WHERE employeeId LIKE (select employee_leave.id from employee_leave where employee_leave.number = #{number} ) ESCAPE '#' AND time = (select employee_leave.time from employee_leave where employee_leave.number = #{number});
+    </delete>
+    <update id="refuse" parameterType="cn.edu.zjut.bean.AccAndRef">
+        UPDATE j2ee.employee_leave t
+        SET t.pass = -1,t.approval_name = (select name from employee where employee.id = #{id})
+        WHERE t.number = #{number};
+    </update>
+</mapper>
