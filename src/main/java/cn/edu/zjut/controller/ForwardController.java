@@ -72,6 +72,13 @@ public class ForwardController {
         model.addAttribute("ross",ros);
         return "staff/ros";
     }
+    @RequestMapping("/askLeave/{id}/{time}")
+    public String sb(@PathVariable String id,@PathVariable int time, Model model){
+        model.addAttribute("personalData",employeeService.GetPersonaldata(id));
+        model.addAttribute("userId",id);
+        model.addAttribute("time",time);
+        return "staff/askLeave";
+    }
     @RequestMapping("/acp/{id}")
     public String four(@PathVariable String id, Model model){
         model.addAttribute("personalData",employeeService.GetPersonaldata(id));

@@ -15,4 +15,10 @@
     <select id="getMyRos" parameterType="java.lang.String" resultType="cn.edu.zjut.bean.MyRos">
         select time from ros202201 where employeeId = #{id};
     </select>
+    <insert id="askLeave" parameterType="cn.edu.zjut.bean.SubLeave">
+        insert into employee_leave(id, time, pass, approval_name, type, information) VALUES (#{id},#{time},0,'',0,#{information});
+    </insert>
+    <insert id="askChange" parameterType="cn.edu.zjut.bean.SubChange">
+        insert into employee_leave(id, time, pass, approval_name, type, information) VALUES (#{id},#{time},0,'',0,#{information});
+    </insert>
 </mapper>

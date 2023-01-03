@@ -3,6 +3,7 @@ package cn.edu.zjut.service;
 import cn.edu.zjut.bean.MyRos;
 import cn.edu.zjut.bean.Preferences;
 import cn.edu.zjut.bean.SeeRosGroup;
+import cn.edu.zjut.bean.SubLeave;
 import cn.edu.zjut.dao.EmployeeDao;
 import cn.edu.zjut.dao.PreferenceDao;
 import cn.edu.zjut.dao.StraffDao;
@@ -22,6 +23,25 @@ import java.util.List;
 
 @Service("employeeService")
 public class EmployeeService implements IEmployeeService{
+    @Override
+    public boolean askLeave(SubLeave leave) {
+        try{
+            SqlSession session;
+            InputStream config= Resources.getResourceAsStream("mybatis-config.xml");
+            SqlSessionFactory ssf= new SqlSessionFactoryBuilder().build(config);
+            session = ssf.openSession();
+            StraffDao dao = session.getMapper(StraffDao.class);
+            dao.askLeave(leave);
+            session.commit();
+            session.close();
+            return true;
+
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return false;
+    }
+
     @Override
     public ArrayList<MyRos> getMyRos(String id) {
         try{

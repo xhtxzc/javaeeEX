@@ -58,9 +58,11 @@ public class StaffController {
         return "staff/info";
 
     }
-    @RequestMapping("/askLeave/{id}/{time}")
-    public String sb(@PathVariable String id,@PathVariable String time, Model model){
-        return "";
+    @RequestMapping("/askLeave")
+    public String wew(@ModelAttribute SubLeave leave,Model model){
+        model.addAttribute("personalData",employeeService.GetPersonaldata(leave.getId()));
+        employeeService.askLeave(leave);
+        return "staff/staffPage";
     }
     @RequestMapping("/alterTime/{id}")
     public String two(@ModelAttribute AlterTime time ,@PathVariable String id, Model model){
