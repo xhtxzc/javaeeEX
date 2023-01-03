@@ -29,9 +29,9 @@
                 <c:if test="${sub.time==4}">周一14:00-16:00</c:if>
                 <c:if test="${sub.time==5}">周一16:00-18:00</c:if>
                 <c:if test="${sub.time==6}">周一18:00-20:00</c:if>
-                <c:if test="${sub.time==7}"> 周二8:00-10:00</c:if>
-                <c:if test="${sub.time==8}"> 周二10:00-12:00</c:if>
-                <c:if test="${sub.time==9}"> 周二12:00-14:00</c:if>
+                <c:if test="${sub.time==7}">周二8:00-10:00</c:if>
+                <c:if test="${sub.time==8}">周二10:00-12:00</c:if>
+                <c:if test="${sub.time==9}">周二12:00-14:00</c:if>
                 <c:if test="${sub.time==10}">周二14:00-16:00</c:if>
                 <c:if test="${sub.time==11}">周二16:00-18:00</c:if>
                 <c:if test="${sub.time==12}">周二18:00-20:00</c:if>
